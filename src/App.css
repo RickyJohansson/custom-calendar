@@ -1,1 +1,16 @@
+.app {
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-color: #1a181d;
+
+}
+
+h1 {
+    color: #d8e5f0;
+    font-size: 3rem;
+}
