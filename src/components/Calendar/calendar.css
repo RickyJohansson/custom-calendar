@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 62rem;
+    width: 42rem;
     height: 32rem;
     border-radius: .8rem;
     background-image: linear-gradient(135deg, #d8e5f0 8.33%, #544d64 8.33%, #544d64 50%, #d8e5f0 50%, #d8e5f0 58.33%, #544d64 58.33%, #544d64 100%);
@@ -11,15 +11,75 @@
 }
 
 .calendar_container {
-
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    width: 60rem;
-    height: 30rem;
+    flex-direction: column;
     background-color: #71658b;
+    width: 40rem;
+    height: 30rem;
     border-radius: 1rem;
     box-shadow: inset .3rem .3rem .4rem #544d64, inset -.3rem -.3rem .4rem #544d64;
-
 }
+
+.calendar_container .dates {
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    place-items: center;
+    width: 38rem;
+    height: 25rem;
+    background-color: #71658b;
+    border-radius: 1rem;
+}
+
+.calendar_navigator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    width: 100%;
+}
+
+.calendar_navigator .left_arrow, .right_arrow {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.calendar_navigator .left_arrow {
+    transform: rotate(180deg);
+}
+
+.calendar_navigator .arrow_shaft {
+    z-index: 3;
+    height: .4rem;
+    width: 3rem;
+    background-color: #d8e5f0;
+    border-radius: .2rem;
+}
+
+.calendar_navigator .arrow_pointer {
+    z-index: 1;
+    position: absolute;
+    left: 2.4rem;
+    height: 1rem;
+    width: 1rem;
+    transform: rotate(45deg);
+    background-color: #d8e5f0;
+    border-radius: .2rem;
+}
+
+.calendar_navigator .arrow_block {
+    position: absolute;
+    z-index: 2;
+    left: 1.9rem;
+    height: 1.5rem;
+    width: 1rem;
+    background-color: #71658b;
+}
+
+h2 {
+    color: #d8e5f0;
+}
+

@@ -1,6 +1,19 @@
 .calendar_date--container {
-    width: 40px;
-    height: 40px;
+
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: .4rem;
     background-color: #a696c9;
-    margin: .5rem;
+
+}
+
+.calendar_date--container:hover {
+    background-color: #b6a9cf;
+}
+
+p {
+    color: #d8e5f0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: .5rem 0 0 .5rem;
 }
