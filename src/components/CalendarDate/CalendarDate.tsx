@@ -2,18 +2,34 @@ import './CalendarDate.css';
 
 type Props = {
     day: number;
+    date: Date;
 }
 
-const CalendarDate = ({ day }: Props) => {
+const CalendarDate = ({ day, date }: Props) => {
 
+    const today = new Date();
 
     return(
+        <>
+        {
+            today.getDate() == day && date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth() ?
 
-        <div className="calendar_date--container">
+            <div className="calendar_date--today">
 
-            <p>{ day }</p>
+                <p>{ day }</p>
 
-        </div>
+            </div>
+
+            :
+
+            <div className="calendar_date--container">
+
+                <p>{ day }</p>
+
+            </div>
+
+        }
+        </>
 
     )
 
