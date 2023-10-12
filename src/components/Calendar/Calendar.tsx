@@ -10,6 +10,8 @@ const Calendar = () => {
     //const [ daysThisMonth, setDaysThisMonth ] = useState<number>(new Date(currentYear, currentMonth + 1, 0).getDate());
     //const [ monthString, setMonthString ] = useState<string>(date.toLocaleString('default', { month: 'long' }).toUpperCase());
     const [ dayArray, setDayArray ] = useState<number[]>([]);
+    const [ layout, setLayout ] = useState<string>('calendar');
+    const [dateClicked, setDateClicked] = useState<number>();
 
     useEffect(() => {
 
@@ -36,9 +38,20 @@ const Calendar = () => {
 
     }
 
+    const changeLayout = (clickedDate: number) => {
+
+        setDateClicked(clickedDate);
+        setLayout('date');
+
+    }
+
     return(
 
         <div className="calendar_border">
+
+            {
+
+            layout == 'calendar' ?
 
             <section className="calendar_container">
 
@@ -65,14 +78,42 @@ const Calendar = () => {
                     {
 
                         dayArray.map((day, i) => {
-                            return < CalendarDate key={i} day={day} date={date}/>
+                            return < CalendarDate key={i} day={day} date={date} changeLayout={changeLayout}/>
                         })
 
                     }
 
                 </section>
 
+
             </section>
+
+            :
+
+            <section className="calendar_container">
+
+                <section className="calendar_navigator">
+
+                <figure className="left_arrow" onClick={ () => setLayout('calendar') }>
+                    <section className="arrow_shaft"></section>
+                    <section className="arrow_pointer"></section>
+                    <section className="arrow_block"></section>
+                </figure>
+
+                <h2>{ dateClicked + ' ' + date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear() }</h2>
+
+                <figure className="right_arrow--hidden">
+                    <section className="arrow_shaft"></section>
+                    <section className="arrow_pointer"></section>
+                    <section className="arrow_block"></section>
+                </figure>
+
+                </section>
+
+
+            </section>
+
+            }
             
         </div>
 
