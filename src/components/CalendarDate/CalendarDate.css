@@ -16,6 +16,15 @@
 
 }
 
+.calendar_date--activity {
+
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: .4rem;
+    background-color: #00ff9d;
+
+}
+
 .calendar_date--today:hover {
 
     background-color: #b796ff;
