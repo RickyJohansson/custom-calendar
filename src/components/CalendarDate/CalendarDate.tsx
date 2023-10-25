@@ -6,19 +6,25 @@ type Activities = {
     time: string;
     title: string;
     desc: string;
+    id: number;
 };
 
 type Props = {
-    day: number;
+    day: string;
     date: Date;
-    changeLayout: (clickedDate: number) => void;
+    changeLayout: (clickedDate: string, id: number | null) => void;
     testActivities: Activities[];
 }
 
 const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
 
     const [ activities, setActivities ] = useState<boolean>(false);
+    const [ id, setId ] = useState<number | null>(null);
     const today = new Date();
+    let displayDay: string;
+
+
+    day.substring(0, 1).includes('0') ? displayDay = day.substring(1, 2) : displayDay = day.substring(0, 2);
 
     useEffect(() => {
 
@@ -28,6 +34,7 @@ const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
         testActivities.forEach((obj: Activities) => {
             if (obj.date == calendarDate) {
                 found = true;
+                setId(obj.id);
             }
         });
 
@@ -36,7 +43,6 @@ const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
         } else {
             setActivities(false);
         }
-        
 
     }, [date]);
 
@@ -46,25 +52,25 @@ const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
         {
             activities ?
 
-            <div className="calendar_date--activity" onClick={ () => changeLayout(day) }>
+            <div className="calendar_date--activity" onClick={ () => changeLayout(displayDay, id) }>
 
-                <p>{ day }</p>
+                <p>{ displayDay }</p>
 
             </div>
 
-            : today.getDate() == day && date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth() ?
+            : today.getDate().toString() == day && date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth() ?
 
-            <div className="calendar_date--today" onClick={ () => changeLayout(day) }>
+            <div className="calendar_date--today" onClick={ () => changeLayout(displayDay, id) }>
 
-                <p>{ day }</p>
+                <p>{ displayDay }</p>
 
             </div>
 
             :
 
-            <div className="calendar_date--container" onClick={ () => changeLayout(day) }>
+            <div className="calendar_date--container" onClick={ () => changeLayout(displayDay, id) }>
 
-                <p>{ day }</p>
+                <p>{ displayDay }</p>
 
             </div>
 

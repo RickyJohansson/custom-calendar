@@ -8,31 +8,33 @@ type Activities = {
     time: string;
     title: string;
     desc: string;
+    id: number;
 };
 
 const Calendar = () => {
 
     const [date, setDate] = useState<Date>(new Date());
-    const [ dayArray, setDayArray ] = useState<number[]>([]);
+    const [ dayArray, setDayArray ] = useState<string[]>([]);
     const [ layout, setLayout ] = useState<string>('calendar');
-    const [dateClicked, setDateClicked] = useState<number>();
+    const [dateClicked, setDateClicked] = useState<string>();
+    const [ currentId, setCurrentId ] = useState<number | null>();
 
     const fullDateClicked = `${date.getFullYear()}` + '-' + `${date.getMonth() + 1}` + '-' + `${dateClicked}`;
 
     const testActivities = [
-        { date: '2023-10-4', time: '14:00', title: 'Sup', desc: 'Ta sig en sup' },
-        { date: '2023-10-8', time: '18:00', title: 'Arnold', desc: 'möte Arnold' },
-        { date: '2023-10-8', time: '16:00', title: 'Prog', desc: 'programmera' },
-        { date: '2023-10-10', time: '14:00', title: 'Kakor', desc: 'baka kakor' },
-        { date: '2023-11-5', time: '11:00', title: 'Bullar', desc: 'köpa bullar' }
+        { date: '2023-10-04', time: '14:00', title: 'Sup', desc: 'Ta sig en sup', id: 1 },
+        { date: '2023-10-08', time: '18:00', title: 'Arnold', desc: 'möte Arnold', id: 2 },
+        { date: '2023-10-08', time: '16:00', title: 'Prog', desc: 'programmera', id: 3 },
+        { date: '2023-10-10', time: '14:00', title: 'Kakor', desc: 'baka kakor', id: 4 },
+        { date: '2023-11-05', time: '11:00', title: 'Bullar', desc: 'köpa bullar', id: 5 }
     ];
 
     useEffect(() => {
 
-        const daysArray: number[] = [];
+        const daysArray: string[] = [];
 
         for(let i = 0; i < new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate(); i++ ) {
-            daysArray.push(i+1);
+            i+1 >= 10 ? daysArray.push(`${i+1}`) : daysArray.push(`0${i+1}`);
         }
 
         setDayArray(daysArray);
@@ -52,10 +54,11 @@ const Calendar = () => {
 
     }
 
-    const changeLayout = (clickedDate: number) => {
+    const changeLayout = (clickedDate: string, id: number | null) => {
 
         setDateClicked(clickedDate);
-        setLayout('date');
+        setCurrentId(id);
+        layout == 'calendar' ? setLayout('date') : setLayout('activity');
 
     }
 
@@ -127,9 +130,9 @@ const Calendar = () => {
                 <section className="calendar_activities">
 
                     {
-                        testActivities.map((act: Activities) => {
-                            if (act.date == fullDateClicked) {
-                                return < CalendarActivity act={act} setLayout={setLayout}/>
+                        testActivities.map((act: Activities, i) => {
+                            if (act.date == fullDateClicked || act.date.substring(0,8) + act.date.substring(9, 10) == fullDateClicked) {
+                                return < CalendarActivity key={i} act={act} changeLayout={changeLayout}/>
                             }
                         })
                     }
@@ -147,13 +150,35 @@ const Calendar = () => {
 
                 <section className="calendar_navigator">
 
-                <figure className="left_arrow" onClick={ () => setLayout('calendar') }>
+                <figure className="left_arrow" onClick={ () => setLayout('date') }>
                     <section className="arrow_shaft"></section>
                     <section className="arrow_pointer"></section>
                     <section className="arrow_block"></section>
                 </figure>
 
                 <h2>{ dateClicked + ' ' + date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear() }</h2>
+
+                </section>
+
+                <section className="activity_info--container">
+
+                    {
+                        testActivities.map((act: Activities) => {
+                            if ( currentId === act.id ) {
+                                return (
+                                    <section className="activity_info">
+
+                                        <p> { `${act.time}` + '-' + `${act.title}` }</p>
+                                        <label htmlFor="desc">Desc:</label>
+                                        <textarea name="desc" id="desc" >{ act.desc }</textarea>
+                                        <button>Ändra</button>
+                                        <button>Ta bort</button>
+
+                                    </section>
+                                )
+                            }
+                        })
+                    }
 
                 </section>
 

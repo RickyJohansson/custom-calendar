@@ -33,6 +33,11 @@
     border-radius: 1rem;
 }
 
+.calendar_container .activity_info--container {
+    display: flex;
+    flex-direction: column;
+}
+
 .calendar_navigator {
     display: flex;
     justify-content: space-between;
