@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './CalendarNavigator';
 
 type Props = {
@@ -6,9 +7,17 @@ type Props = {
     date: Date;
     layout: string;
     setLayout: React.Dispatch<React.SetStateAction<string>>;
+    dateClicked: string | undefined;
 }
 
-const CalendarNavigator = ({ previousMonth, nextMonth, date, layout, setLayout }: Props) => {
+const CalendarNavigator = ({ previousMonth, nextMonth, date, layout, setLayout, dateClicked }: Props) => {
+
+    const [ dateString, setDateString ] = useState<string>();
+
+    useEffect(() => {
+        layout == 'calendar' ? setDateString(date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear())
+        : setDateString(dateClicked + ' - ' + date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear());
+    }, [layout]);
 
     const handleLeftArrow = () => {
         layout == 'calendar' ? previousMonth() : layout == 'date' ? setLayout('calendar') : layout == 'activity' ? setLayout('date') : setLayout('calendar');
@@ -30,7 +39,7 @@ const CalendarNavigator = ({ previousMonth, nextMonth, date, layout, setLayout }
                 <section className="arrow_block"></section>
             </figure>
 
-            <h2>{ date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear() }</h2>
+            <h2>{ dateString }</h2>
 
             {
                 layout == 'calendar'?

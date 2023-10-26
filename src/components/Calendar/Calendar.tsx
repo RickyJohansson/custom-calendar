@@ -73,7 +73,8 @@ const Calendar = () => {
 
             <section className="calendar_container">
 
-                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} setLayout={setLayout}/>
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} 
+                setLayout={setLayout} dateClicked={dateClicked}/>
 
                 <section className="dates">
 
@@ -94,7 +95,8 @@ const Calendar = () => {
 
             <section className="calendar_container">
 
-                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} setLayout={setLayout}/>
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} 
+                setLayout={setLayout} dateClicked={dateClicked}/>
 
                 <section className="calendar_activities">
 
@@ -117,8 +119,9 @@ const Calendar = () => {
 
             <section className="calendar_container">
 
-                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} setLayout={setLayout}/>
-
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} 
+                setLayout={setLayout} dateClicked={dateClicked}/>
+                
                 <section className="activity_info--container">
 
                     {
