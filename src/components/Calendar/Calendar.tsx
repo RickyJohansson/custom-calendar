@@ -1,6 +1,7 @@
 import './calendar.css';
 import CalendarDate from '../CalendarDate/CalendarDate';
 import CalendarActivity from '../CalendarActivity/CalendarActivity';
+import CalendarNavigator from '../CalendarNavigator/CalendarNavigator';
 import { useEffect, useState } from 'react';
 
 type Activities = {
@@ -72,23 +73,7 @@ const Calendar = () => {
 
             <section className="calendar_container">
 
-                <section className="calendar_navigator">
-
-                    <figure className="left_arrow" onClick={ previousMonth }>
-                        <section className="arrow_shaft"></section>
-                        <section className="arrow_pointer"></section>
-                        <section className="arrow_block"></section>
-                    </figure>
-
-                    <h2>{ date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear() }</h2>
-
-                    <figure className="right_arrow" onClick={ nextMonth }>
-                        <section className="arrow_shaft"></section>
-                        <section className="arrow_pointer"></section>
-                        <section className="arrow_block"></section>
-                    </figure>
-
-                </section>
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} setLayout={setLayout}/>
 
                 <section className="dates">
 
@@ -109,23 +94,7 @@ const Calendar = () => {
 
             <section className="calendar_container">
 
-                <section className="calendar_navigator">
-
-                <figure className="left_arrow" onClick={ () => setLayout('calendar') }>
-                    <section className="arrow_shaft"></section>
-                    <section className="arrow_pointer"></section>
-                    <section className="arrow_block"></section>
-                </figure>
-
-                <h2>{ dateClicked + ' ' + date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear() }</h2>
-
-                <figure className="right_arrow--hidden">
-                    <section className="arrow_shaft"></section>
-                    <section className="arrow_pointer"></section>
-                    <section className="arrow_block"></section>
-                </figure>
-
-                </section>
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} setLayout={setLayout}/>
 
                 <section className="calendar_activities">
 
@@ -148,17 +117,7 @@ const Calendar = () => {
 
             <section className="calendar_container">
 
-                <section className="calendar_navigator">
-
-                <figure className="left_arrow" onClick={ () => setLayout('date') }>
-                    <section className="arrow_shaft"></section>
-                    <section className="arrow_pointer"></section>
-                    <section className="arrow_block"></section>
-                </figure>
-
-                <h2>{ dateClicked + ' ' + date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear() }</h2>
-
-                </section>
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} setLayout={setLayout}/>
 
                 <section className="activity_info--container">
 
