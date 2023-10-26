@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import './CalendarNavigator';
 
 type Props = {
@@ -14,10 +14,10 @@ const CalendarNavigator = ({ previousMonth, nextMonth, date, layout, setLayout, 
 
     const [ dateString, setDateString ] = useState<string>();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         layout == 'calendar' ? setDateString(date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear())
         : setDateString(dateClicked + ' - ' + date.toLocaleString('default', { month: 'long' }).toUpperCase() + ' - ' + date.getFullYear());
-    }, [layout]);
+    }, [date, layout]);
 
     const handleLeftArrow = () => {
         layout == 'calendar' ? previousMonth() : layout == 'date' ? setLayout('calendar') : layout == 'activity' ? setLayout('date') : setLayout('calendar');
