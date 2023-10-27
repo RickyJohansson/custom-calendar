@@ -103,7 +103,7 @@ const Calendar = () => {
                     {
                         testActivities.map((act: Activities, i) => {
                             if (act.date == fullDateClicked || act.date.substring(0,8) + act.date.substring(9, 10) == fullDateClicked) {
-                                return < CalendarActivity key={i} act={act} changeLayout={changeLayout}/>
+                                return < CalendarActivity key={i} act={act} changeLayout={changeLayout} setLayout={setLayout}/>
                             }
                         })
                     }
@@ -121,7 +121,7 @@ const Calendar = () => {
 
                 < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} 
                 setLayout={setLayout} dateClicked={dateClicked}/>
-                
+
                 <section className="activity_info--container">
 
                     {
@@ -131,10 +131,8 @@ const Calendar = () => {
                                     <section className="activity_info">
 
                                         <p> { `${act.time}` + '-' + `${act.title}` }</p>
-                                        <label htmlFor="desc">Desc:</label>
+                                        <label htmlFor="desc">Beskrivning:</label>
                                         <textarea name="desc" id="desc" >{ act.desc }</textarea>
-                                        <button>Ändra</button>
-                                        <button>Ta bort</button>
 
                                     </section>
                                 )
@@ -146,6 +144,45 @@ const Calendar = () => {
 
             </section>
 
+            : layout == 'edit' ?
+            <section className="calendar_container">
+
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} 
+                setLayout={setLayout} dateClicked={dateClicked}/>
+
+                <section className="activity_info--container">
+
+                    {
+                        testActivities.map((act: Activities) => {
+                            if ( currentId === act.id ) {
+                                return (
+                                    <section className="activity_info">
+                                        
+                                        <form action="">
+
+                                            <label htmlFor="title">Titel: </label>
+                                            <input type="text" name="title" value={ act.title } />
+                                            <label htmlFor="times">Tid: </label>
+                                            <select name="times" id="times">
+                                                <option value="10:00"></option>
+                                                <option value="11:00"></option>
+                                                <option value="12:00"></option>
+                                            </select>
+                                            <label htmlFor="desc">Beskrivning:</label>
+                                            <textarea name="desc" id="desc" >{ act.desc }</textarea>
+                                            <button>Spara ändringar</button>
+
+                                        </form>
+
+                                    </section>
+                                )
+                            }
+                        })
+                    }
+
+                </section>
+
+            </section>
             :
             ''
             }

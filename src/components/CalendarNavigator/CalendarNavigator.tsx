@@ -20,7 +20,7 @@ const CalendarNavigator = ({ previousMonth, nextMonth, date, layout, setLayout, 
     }, [date, layout]);
 
     const handleLeftArrow = () => {
-        layout == 'calendar' ? previousMonth() : layout == 'date' ? setLayout('calendar') : layout == 'activity' ? setLayout('date') : setLayout('calendar');
+        layout == 'calendar' ? previousMonth() : layout == 'date' ? setLayout('calendar') : layout == 'activity' || 'edit' ? setLayout('date') : setLayout('calendar');
     }
 
     const handleRightArrow = () => {

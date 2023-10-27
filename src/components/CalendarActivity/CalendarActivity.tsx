@@ -12,10 +12,11 @@ type Props = {
 
     act: Activities;
     changeLayout: (clickedDate: string, id: number | null) => void;
+    setLayout: React.Dispatch<React.SetStateAction<string>>;
 
 };
 
-const CalendarActivity = ({act, changeLayout}: Props) => {
+const CalendarActivity = ({act, changeLayout, setLayout}: Props) => {
 
     let clickedDate: string;
 
@@ -33,7 +34,7 @@ const CalendarActivity = ({act, changeLayout}: Props) => {
                 <p> { act.time } </p>
                 <h2> {act.title} </h2>
                 <button onClick={ readMore }>read more</button>
-                <button>EDIT</button>
+                <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>EDIT</button>
                 <button>DELETE</button>
 
             </div>
