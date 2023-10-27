@@ -3,6 +3,7 @@ import CalendarDate from '../CalendarDate/CalendarDate';
 import CalendarActivity from '../CalendarActivity/CalendarActivity';
 import CalendarNavigator from '../CalendarNavigator/CalendarNavigator';
 import { useEffect, useState } from 'react';
+import CalendarActivityForm from '../CalendarActivityForm/CalendarActivityForm';
 
 type Activities = {
     date: string;
@@ -110,7 +111,7 @@ const Calendar = () => {
 
                 </section>
 
-                <button>New activity</button>
+                <button onClick={ () => setLayout('create') }>New activity</button>
 
 
             </section>
@@ -151,34 +152,26 @@ const Calendar = () => {
                 setLayout={setLayout} dateClicked={dateClicked}/>
 
                 <section className="activity_info--container">
-
                     {
                         testActivities.map((act: Activities) => {
                             if ( currentId === act.id ) {
-                                return (
-                                    <section className="activity_info">
-                                        
-                                        <form action="">
-
-                                            <label htmlFor="title">Titel: </label>
-                                            <input type="text" name="title" value={ act.title } />
-                                            <label htmlFor="times">Tid: </label>
-                                            <select name="times" id="times">
-                                                <option value="10:00"></option>
-                                                <option value="11:00"></option>
-                                                <option value="12:00"></option>
-                                            </select>
-                                            <label htmlFor="desc">Beskrivning:</label>
-                                            <textarea name="desc" id="desc" >{ act.desc }</textarea>
-                                            <button>Spara ändringar</button>
-
-                                        </form>
-
-                                    </section>
-                                )
+                                return < CalendarActivityForm title={act.title} time={act.time} desc={act.desc} layout={layout} />
                             }
                         })
                     }
+                </section>
+
+            </section>
+
+            : layout == 'create' ?
+            <section className="calendar_container">
+
+                < CalendarNavigator previousMonth={previousMonth} nextMonth={nextMonth} date={date} layout={layout} 
+                setLayout={setLayout} dateClicked={dateClicked}/>
+
+                <section className="activity_info--container">
+
+                    < CalendarActivityForm title={''} time={''} desc={''} layout={layout} />
 
                 </section>
 
