@@ -28,7 +28,8 @@ const Calendar = () => {
         { date: '2023-10-08', time: '18:00', title: 'Arnold', desc: 'möte Arnold', id: 2 },
         { date: '2023-10-08', time: '16:00', title: 'Prog', desc: 'programmera', id: 3 },
         { date: '2023-10-10', time: '14:00', title: 'Kakor', desc: 'baka kakor', id: 4 },
-        { date: '2023-11-05', time: '11:00', title: 'Bullar', desc: 'köpa bullar', id: 5 }
+        { date: '2023-11-05', time: '11:00', title: 'Bullar', desc: 'köpa bullar', id: 5 },
+        { date: '2023-11-08', time: '08:05', title: 'Skola', desc: 'redo för skolan', id: 6 }
     ];
 
     useEffect(() => {
