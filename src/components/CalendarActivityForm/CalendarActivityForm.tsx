@@ -10,31 +10,11 @@ type Props = {
 
 const CalendarActivityForm = ({title, time, desc, layout}: Props) => {
 
-    const [ hourOptions, setHourOptions ] = useState<string[]>([]);
-    const [minuteOptions, setMinuteOptions] = useState<string[]>([]);
     const [ hour, setHour ] = useState<string>('');
     const [ minute, setMinute ] = useState<string>('');
+    const [ valid, setValid ] = useState<boolean>();
 
     useLayoutEffect(() => {
-        const hourArray: string[] = [];
-        for(let i = 0; i < 24; i++) {
-            if ( i < 10 ) {
-                hourArray.push('0' + `${i}`)
-            } else { 
-                hourArray.push(`${i}`) 
-            }
-        }
-        setHourOptions(hourArray);
-
-        const minuteArray: string[] = [];
-        for(let i = 0; i < 12; i++) {
-            if ( i < 2 ) {
-                minuteArray.push('0' + `${i * 5}`)
-            } else { 
-                minuteArray.push(`${i * 5}`) 
-            }
-        }
-        setMinuteOptions(minuteArray);
 
         if (layout == 'edit') {
             setHour(time.substring(0, 2));
@@ -43,12 +23,20 @@ const CalendarActivityForm = ({title, time, desc, layout}: Props) => {
 
     }, [])
 
-    const handleHours = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleHours = (e: React.ChangeEvent<HTMLInputElement>) => {
         setHour(e.target.value);
     }
 
-    const handleMinutes = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleMinutes = (e: React.ChangeEvent<HTMLInputElement>) => {
         setMinute(e.target.value);
+    }
+
+    const validateKey = (e: any) => {
+        if ( (e.keyCode >= 48 && e.keyCode < 57) || e.keyCode == 8) {
+            setValid(true);
+        } else {
+            setValid(false);
+        }
     }
 
     const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
@@ -66,24 +54,14 @@ const CalendarActivityForm = ({title, time, desc, layout}: Props) => {
 
             <label htmlFor="title">Titel: </label>
             <input type="text" name="title" id="title" value={ title } />
-            <label htmlFor="times">Tid: </label>
-            <select name="hours" id="hours" value={hour} onChange={ (e) => handleHours(e) }>
-                {
-                    hourOptions.map((hour) => {
-                        return <option value={ hour }>{ hour }</option>
-                    })
-                }
-            </select>
-            <p> : </p>
-            <select name="minutes" id="minutes" value={minute} onChange={ (e) => handleMinutes(e) }>
-                {
-                    minuteOptions.map((minute) => {
-                        return <option value={ minute }>{ minute }</option>
-                    })
-                }
-            </select>
+            <section className="time_container">
+                <label htmlFor="times">Tid: </label>
+                <input className="input_time" maxLength={2} name="hour" id="hour" value={hour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleHours(e)} } }/>
+                <p> : </p>
+                <input className="input_time" maxLength={2} name="minute" id="minute" value={minute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleMinutes(e)} } }/>
+            </section>
             <label htmlFor="desc">Beskrivning:</label>
-            <textarea name="desc" id="desc" >{ desc }</textarea>
+            <textarea name="desc" id="desc" maxLength={200} >{ desc }</textarea>
             {
                 layout == 'edit' ?
                 <input type="submit" value="spara ändringar" ></input>

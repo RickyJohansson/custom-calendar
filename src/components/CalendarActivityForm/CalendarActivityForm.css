@@ -1,0 +1,16 @@
+.activity_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity_form .time_container {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+}
+
+.activity_form .input_time {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+}
