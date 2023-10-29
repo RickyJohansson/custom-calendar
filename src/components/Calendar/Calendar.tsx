@@ -7,7 +7,8 @@ import CalendarActivityForm from '../CalendarActivityForm/CalendarActivityForm';
 
 type Activities = {
     date: string;
-    time: string;
+    startTime: string;
+    endTime: string;
     title: string;
     desc: string;
     id: number;
@@ -24,12 +25,12 @@ const Calendar = () => {
     const fullDateClicked = `${date.getFullYear()}` + '-' + `${date.getMonth() + 1}` + '-' + `${dateClicked}`;
 
     const testActivities = [
-        { date: '2023-10-04', time: '14:00', title: 'Sup', desc: 'Ta sig en sup', id: 1 },
-        { date: '2023-10-08', time: '18:00', title: 'Arnold', desc: 'möte Arnold', id: 2 },
-        { date: '2023-10-08', time: '16:00', title: 'Prog', desc: 'programmera', id: 3 },
-        { date: '2023-10-10', time: '14:00', title: 'Kakor', desc: 'baka kakor', id: 4 },
-        { date: '2023-11-05', time: '11:00', title: 'Bullar', desc: 'köpa bullar', id: 5 },
-        { date: '2023-11-08', time: '08:05', title: 'Skola', desc: 'redo för skolan', id: 6 }
+        { date: '2023-10-04', startTime: '14:00', endTime: '15:20', title: 'Sup', desc: 'Ta sig en sup', id: 1 },
+        { date: '2023-10-08', startTime: '18:00', endTime: '19:10', title: 'Arnold', desc: 'möte Arnold', id: 2 },
+        { date: '2023-10-08', startTime: '16:00', endTime: '18:00', title: 'Prog', desc: 'programmera', id: 3 },
+        { date: '2023-10-10', startTime: '14:00', endTime: '19:45', title: 'Kakor', desc: 'baka kakor', id: 4 },
+        { date: '2023-11-05', startTime: '11:00', endTime: '13:30', title: 'Bullar', desc: 'köpa bullar', id: 5 },
+        { date: '2023-11-08', startTime: '08:05', endTime: '16:25', title: 'Skola', desc: 'redo för skolan', id: 6 }
     ];
 
     useEffect(() => {
@@ -132,7 +133,7 @@ const Calendar = () => {
                                 return (
                                     <section className="activity_info">
 
-                                        <p> { `${act.time}` + '-' + `${act.title}` }</p>
+                                        <p> { `${act.startTime}` + '-' + `${act.title}` }</p>
                                         <label htmlFor="desc">Beskrivning:</label>
                                         <textarea name="desc" id="desc" >{ act.desc }</textarea>
 
@@ -156,7 +157,7 @@ const Calendar = () => {
                     {
                         testActivities.map((act: Activities) => {
                             if ( currentId === act.id ) {
-                                return < CalendarActivityForm title={act.title} time={act.time} desc={act.desc} layout={layout} />
+                                return < CalendarActivityForm key={act.id} date={act.date} title={act.title} time={act.startTime} endTime={act.endTime} desc={act.desc} id={act.id} layout={layout} />
                             }
                         })
                     }
@@ -172,7 +173,7 @@ const Calendar = () => {
 
                 <section className="activity_info--container">
 
-                    < CalendarActivityForm title={''} time={''} desc={''} layout={layout} />
+                    < CalendarActivityForm date={fullDateClicked} title={''} time={''} endTime={''} desc={''} id={0} layout={layout} />
 
                 </section>
 

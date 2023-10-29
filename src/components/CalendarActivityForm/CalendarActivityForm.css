@@ -14,3 +14,21 @@
     height: 1.5rem;
     font-size: 1rem;
 }
+
+.activity_form label {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.activity_form input {
+    min-height: 1.5rem;
+    outline: none;
+}
+
+.activity_form textarea {
+    width: 18rem;
+    height: 8rem;
+    resize: none;
+    outline: none;
+}

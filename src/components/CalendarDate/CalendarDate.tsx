@@ -3,7 +3,8 @@ import './CalendarDate.css';
 
 type Activities = {
     date: string;
-    time: string;
+    startTime: string;
+    endTime: string;
     title: string;
     desc: string;
     id: number;

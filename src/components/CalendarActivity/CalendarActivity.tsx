@@ -2,7 +2,8 @@ import './calendarActivity.css';
 
 type Activities = {
     date: string;
-    time: string;
+    startTime: string;
+    endTime: string;
     title: string;
     desc: string;
     id: number;
@@ -31,7 +32,7 @@ const CalendarActivity = ({act, changeLayout, setLayout}: Props) => {
 
             <div className="activity_container">
 
-                <p> { act.time } </p>
+                <p> { act.startTime } - { act.endTime } </p>
                 <h2> {act.title} </h2>
                 <button onClick={ readMore }>read more</button>
                 <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>EDIT</button>
