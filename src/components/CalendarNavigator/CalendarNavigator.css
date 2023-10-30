@@ -6,6 +6,11 @@
     width: 100%;
 }
 
+.calendar_navigator.center {
+    position: relative;
+    justify-content: flex-start;
+}
+
 .calendar_navigator .left_arrow, .right_arrow {
     display: flex;
     position: relative;
@@ -48,6 +53,9 @@
     background-color: #71658b;
 }
 
-h2 {
-    color: #d8e5f0;
+h2.center {
+    width: 15rem;
+    text-align: center;
+    position: absolute;
+    left: calc(50% - 7.5rem);
 }
