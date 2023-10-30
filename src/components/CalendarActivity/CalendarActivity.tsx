@@ -32,11 +32,16 @@ const CalendarActivity = ({act, changeLayout, setLayout}: Props) => {
 
             <div className="activity_container">
 
-                <p> { act.startTime } - { act.endTime } </p>
-                <h2> {act.title} </h2>
-                <button onClick={ readMore }>read more</button>
-                <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>EDIT</button>
-                <button>DELETE</button>
+                <article className="activity_title">
+                    <h2> {act.title} </h2>
+                    <p> { act.startTime } - { act.endTime } </p>
+                </article>
+
+                <section>
+                    <button onClick={ readMore }>Details</button>
+                    <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>Edit</button>
+                    <button>Delete</button>
+                </section>
 
             </div>
 

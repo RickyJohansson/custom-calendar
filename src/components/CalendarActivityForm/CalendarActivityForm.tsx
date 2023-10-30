@@ -91,15 +91,18 @@ const CalendarActivityForm = ({date, title, time, endTime, desc, id, layout}: Pr
             <input type="text" required maxLength={35} name="title" id="title" value={ activityTitle } onChange={ (e) => setActivityTitle(e.target.value) }/>
             <section className="time_container">
                 <label htmlFor="times">Tid: </label>
-                <label htmlFor="startHour">startar</label>
-                <input className="input_time" required maxLength={2} name="startHour" id="startHour" value={startHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartHours(e)} } }/>
-                <p> : </p>
-                <input className="input_time" required maxLength={2} name="startMinute" id="startMinute" value={startMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartMinutes(e)} } }/>
-
-                <label htmlFor="startHour">slutar</label>
-                <input className="input_time" required maxLength={2} name="endHour" id="endHour" value={endHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndHours(e)} } }/>
-                <p> : </p>
-                <input className="input_time" required maxLength={2} name="endMinute" id="endMinute" value={endMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndMinutes(e)} } }/>
+                <section className="start_time">
+                    <label htmlFor="startHour">startar</label>
+                    <input className="input_time" required maxLength={2} name="startHour" id="startHour" value={startHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartHours(e)} } }/>
+                    <p> : </p>
+                    <input className="input_time" required maxLength={2} name="startMinute" id="startMinute" value={startMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartMinutes(e)} } }/>
+                </section>
+                <section className="end_time">
+                    <label htmlFor="startHour">slutar</label>
+                    <input className="input_time" required maxLength={2} name="endHour" id="endHour" value={endHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndHours(e)} } }/>
+                    <p> : </p>
+                    <input className="input_time" required maxLength={2} name="endMinute" id="endMinute" value={endMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndMinutes(e)} } }/>
+                </section>
 
             </section>
             <label htmlFor="desc">Beskrivning:</label>

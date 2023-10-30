@@ -38,6 +38,36 @@
     flex-direction: column;
 }
 
+.calendar_container .activity_info--container .activity_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar_container .activity_info--container .activity_info p {
+    margin: .8rem 0;
+}
+
+.calendar_container .activity_info--container .activity_info article {
+        width: 18rem;
+        height: 8rem;
+        background-color: #FFFFFF;
+        border-radius: .1rem;
+        
+}
+
+.calendar_container .activity_info--container .activity_info article p {
+    margin: .5rem;
+    font-size: 1rem;
+    color: #020202;
+}
+
+.calendar_container .new_button {
+    width: 8rem;
+    height: 2rem;
+    margin-top: 2rem;
+    font-weight: 600;
+}
+
 .calendar_navigator {
     display: flex;
     justify-content: space-between;
@@ -89,6 +119,7 @@
 }
 
 h2 {
+    margin: 0;
     color: #d8e5f0;
 }
 

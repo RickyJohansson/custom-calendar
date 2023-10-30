@@ -5,8 +5,13 @@
 
 .activity_form .time_container {
     display: flex;
-    align-items: center;
-    height: 4rem;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 8rem;
+}
+
+.activity_form .start_time, .end_time {
+    display: flex;
 }
 
 .activity_form .input_time {

@@ -113,7 +113,7 @@ const Calendar = () => {
 
                 </section>
 
-                <button onClick={ () => setLayout('create') }>New activity</button>
+                <button className="new_button" onClick={ () => setLayout('create') }>New activity</button>
 
 
             </section>
@@ -131,11 +131,14 @@ const Calendar = () => {
                         testActivities.map((act: Activities) => {
                             if ( currentId === act.id ) {
                                 return (
-                                    <section className="activity_info">
+                                    <section key={act.id} className="activity_info">
 
-                                        <p> { `${act.startTime}` + '-' + `${act.title}` }</p>
-                                        <label htmlFor="desc">Beskrivning:</label>
-                                        <textarea name="desc" id="desc" >{ act.desc }</textarea>
+                                        <h2> { act.title }</h2>
+                                        <p>{`${act.startTime}` + ' - ' + `${ act.endTime }`}</p>
+                                        <p>Beskrivning:</p>
+                                        <article>
+                                            <p>{ act.desc }</p>
+                                        </article>
 
                                     </section>
                                 )
