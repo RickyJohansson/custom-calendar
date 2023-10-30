@@ -135,7 +135,7 @@ const Calendar = () => {
 
                                         <h2> { act.title }</h2>
                                         <p>{`${act.startTime}` + ' - ' + `${ act.endTime }`}</p>
-                                        <p>Beskrivning:</p>
+                                        <p className="activity_desc">Beskrivning:</p>
                                         <article>
                                             <p>{ act.desc }</p>
                                         </article>

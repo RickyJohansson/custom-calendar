@@ -1,6 +1,7 @@
 .activity_form {
     display: flex;
     flex-direction: column;
+    margin-top: 1rem;
 }
 
 .activity_form .time_container {
@@ -10,12 +11,39 @@
     height: 8rem;
 }
 
+.activity_form .time_container .time_text {
+    margin-top: 1rem;
+}
+
 .activity_form .start_time, .end_time {
     display: flex;
+    width: 14rem;
+}
+
+.activity_form .start_time .time_flex, .end_time .time_flex {
+    display: flex;
+    width: 6rem;
+    justify-content: space-evenly;
+}
+
+.activity_form .start_time label, .end_time label {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 4.5rem;
+}
+
+.activity_form .time_flex .time_colon {
+    margin: 0;
+}
+
+.activity_form .form_desc {
+    margin-top: 1rem;
 }
 
 .activity_form .input_time {
-    width: 1.5rem;
+    text-align: center;
+    width: 2rem;
     height: 1.5rem;
     font-size: 1rem;
 }
@@ -36,4 +64,9 @@
     height: 8rem;
     resize: none;
     outline: none;
+}
+
+.activity_form .form_button {
+    font-weight: 600;
+    height: 2rem;
 }

@@ -47,6 +47,10 @@
     margin: .8rem 0;
 }
 
+.calendar_container .activity_info--container .activity_info .activity_desc {
+    font-weight: 600;
+}
+
 .calendar_container .activity_info--container .activity_info article {
         width: 18rem;
         height: 8rem;

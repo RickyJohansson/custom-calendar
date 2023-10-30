@@ -90,28 +90,32 @@ const CalendarActivityForm = ({date, title, time, endTime, desc, id, layout}: Pr
             <label htmlFor="title">Titel: </label>
             <input type="text" required maxLength={35} name="title" id="title" value={ activityTitle } onChange={ (e) => setActivityTitle(e.target.value) }/>
             <section className="time_container">
-                <label htmlFor="times">Tid: </label>
+                <label className="time_text" htmlFor="times">Tid: </label>
                 <section className="start_time">
                     <label htmlFor="startHour">startar</label>
-                    <input className="input_time" required maxLength={2} name="startHour" id="startHour" value={startHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartHours(e)} } }/>
-                    <p> : </p>
-                    <input className="input_time" required maxLength={2} name="startMinute" id="startMinute" value={startMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartMinutes(e)} } }/>
+                    <section className="time_flex">
+                        <input className="input_time" required maxLength={2} name="startHour" id="startHour" value={startHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartHours(e)} } }/>
+                        <p className="time_colon"> : </p>
+                        <input className="input_time" required maxLength={2} name="startMinute" id="startMinute" value={startMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartMinutes(e)} } }/>
+                    </section>
                 </section>
                 <section className="end_time">
                     <label htmlFor="startHour">slutar</label>
-                    <input className="input_time" required maxLength={2} name="endHour" id="endHour" value={endHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndHours(e)} } }/>
-                    <p> : </p>
-                    <input className="input_time" required maxLength={2} name="endMinute" id="endMinute" value={endMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndMinutes(e)} } }/>
+                    <section className="time_flex">
+                        <input className="input_time" required maxLength={2} name="endHour" id="endHour" value={endHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndHours(e)} } }/>
+                        <p className="time_colon"> : </p>
+                        <input className="input_time" required maxLength={2} name="endMinute" id="endMinute" value={endMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndMinutes(e)} } }/>
+                    </section>
                 </section>
 
             </section>
-            <label htmlFor="desc">Beskrivning:</label>
+            <label className="form_desc" htmlFor="desc">Beskrivning:</label>
             <textarea name="desc" id="desc" required maxLength={200} value={activityDesc} onChange={ (e) => setActivityDesc(e.target.value) } ></textarea>
             {
                 layout == 'edit' ?
-                <input type="submit" value="spara ändringar" ></input>
+                <input className="form_button" type="submit" value="Spara ändringar" ></input>
                 : layout == 'create' ?
-                <input type="submit" value="skapa aktivitet" ></input>
+                <input className="form_button" type="submit" value="Skapa aktivitet" ></input>
                 :
                 ''
             }

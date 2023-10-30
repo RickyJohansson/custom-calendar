@@ -38,9 +38,9 @@ const CalendarActivity = ({act, changeLayout, setLayout}: Props) => {
                 </article>
 
                 <section>
-                    <button onClick={ readMore }>Details</button>
-                    <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={ readMore }>Info</button>
+                    <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>Ändra</button>
+                    <button>Ta bort</button>
                 </section>
 
             </div>
