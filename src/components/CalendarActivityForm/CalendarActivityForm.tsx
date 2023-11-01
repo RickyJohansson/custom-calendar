@@ -89,7 +89,7 @@ const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, 
                 return act;
             }
         });
-        
+
         setActivities(tempArray);
         setLayout('date');
     }
@@ -121,17 +121,17 @@ const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, 
                 <section className="start_time">
                     <label htmlFor="startHour">startar</label>
                     <section className="time_flex">
-                        <input className="input_time" required maxLength={2} name="startHour" id="startHour" value={startHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartHours(e)} } }/>
+                        <input className="input_time" required minLength={2} maxLength={2} name="startHour" id="startHour" value={startHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartHours(e)} } }/>
                         <p className="time_colon"> : </p>
-                        <input className="input_time" required maxLength={2} name="startMinute" id="startMinute" value={startMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartMinutes(e)} } }/>
+                        <input className="input_time" required minLength={2} maxLength={2} name="startMinute" id="startMinute" value={startMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleStartMinutes(e)} } }/>
                     </section>
                 </section>
                 <section className="end_time">
                     <label htmlFor="startHour">slutar</label>
                     <section className="time_flex">
-                        <input className="input_time" required maxLength={2} name="endHour" id="endHour" value={endHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndHours(e)} } }/>
+                        <input className="input_time" required minLength={2} maxLength={2} name="endHour" id="endHour" value={endHour} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndHours(e)} } }/>
                         <p className="time_colon"> : </p>
-                        <input className="input_time" required maxLength={2} name="endMinute" id="endMinute" value={endMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndMinutes(e)} } }/>
+                        <input className="input_time" required minLength={2} maxLength={2} name="endMinute" id="endMinute" value={endMinute} onKeyDown={(e) => validateKey(e)} onChange={(e) => { if (valid) {handleEndMinutes(e)} } }/>
                     </section>
                 </section>
 
