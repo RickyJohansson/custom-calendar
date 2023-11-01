@@ -75,7 +75,7 @@ const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, 
 
     const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const tempArray = acts.filter((act: Activities) => {
+        const tempArray = acts.map((act: Activities) => {
             if (act.id == id) {
                 return {
                     date: todayString,
@@ -89,14 +89,7 @@ const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, 
                 return act;
             }
         });
-        console.log('expected edit: ', {
-            date: todayString,
-            title: activityTitle, 
-            startTime: `${ startHour + ':' + startMinute }`,
-            endTime: `${ endHour + ':' + endMinute }`,
-            desc: activityDesc,
-            id: id
-        })
+        
         setActivities(tempArray);
         setLayout('date');
     }
