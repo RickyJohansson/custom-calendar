@@ -47,7 +47,7 @@ const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, 
             setActivityTitle(title);
         }
 
-    }, [])
+    }, []);
 
     const handleStartHours = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStartHour(e.target.value);
@@ -90,6 +90,14 @@ const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, 
             }
         });
 
+        tempArray.sort((a: any, b: any) => {
+            if (a.CreatedAt <= b.CreatedAt) {
+                return b.startTime >= a.startTime ? -1 : 1
+            } else {
+                return a.startTime < b.startTime ? -1 : 1
+            }
+        })
+
         setActivities(tempArray);
         setLayout('date');
     }
@@ -107,6 +115,15 @@ const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, 
             desc: activityDesc,
             id: Math.floor(Math.random() * Math.random() * 120456794006)
         })
+
+        tempArray.sort((a: any, b: any) => {
+            if (a.startTime <= b.startTime) {
+                return b.startTime >= a.startTime ? -1 : 1
+            } else {
+                return a.startTime < b.startTime ? -1 : 1
+            }
+        })
+
         setActivities(tempArray);
         setLayout('date');
     }

@@ -34,7 +34,6 @@ const Calendar = () => {
 
     const fullDateClicked = `${date.getFullYear()}` + '-' + `${date.getMonth() + 1}` + '-' + `${dateClicked}`;
 
-
     useEffect(() => {
 
         const daysArray: string[] = [];
