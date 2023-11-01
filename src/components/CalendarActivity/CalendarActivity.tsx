@@ -12,12 +12,14 @@ type Activities = {
 type Props = {
 
     act: Activities;
+    activities: Activities[];
+    setActivities: React.Dispatch<React.SetStateAction<Activities[]>>
     changeLayout: (clickedDate: string, id: number | null) => void;
     setLayout: React.Dispatch<React.SetStateAction<string>>;
 
 };
 
-const CalendarActivity = ({act, changeLayout, setLayout}: Props) => {
+const CalendarActivity = ({act, activities, setActivities, changeLayout, setLayout}: Props) => {
 
     let clickedDate: string;
 
@@ -25,6 +27,16 @@ const CalendarActivity = ({act, changeLayout, setLayout}: Props) => {
 
     const readMore = () => {
         changeLayout(clickedDate, act.id);
+    }
+
+    const deleteActivity = () => {
+        const tempArray: Activities[] = activities.filter((activity: Activities) => {
+            if (act.id !== activity.id) {
+                return activity
+            }
+        })
+        
+        setActivities(tempArray);
     }
 
     return(
@@ -40,7 +52,7 @@ const CalendarActivity = ({act, changeLayout, setLayout}: Props) => {
                 <section>
                     <button onClick={ readMore }>Info</button>
                     <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>Ändra</button>
-                    <button>Ta bort</button>
+                    <button onClick={ deleteActivity }>Ta bort</button>
                 </section>
 
             </div>

@@ -16,14 +16,6 @@ type Activities = {
 
 const Calendar = () => {
 
-    const [date, setDate] = useState<Date>(new Date());
-    const [ dayArray, setDayArray ] = useState<string[]>([]);
-    const [ layout, setLayout ] = useState<string>('calendar');
-    const [dateClicked, setDateClicked] = useState<string>();
-    const [ currentId, setCurrentId ] = useState<number | null>();
-
-    const fullDateClicked = `${date.getFullYear()}` + '-' + `${date.getMonth() + 1}` + '-' + `${dateClicked}`;
-
     const testActivities = [
         { date: '2023-10-04', startTime: '14:00', endTime: '15:20', title: 'Sup', desc: 'Ta sig en sup', id: 1 },
         { date: '2023-10-08', startTime: '18:00', endTime: '19:10', title: 'Arnold', desc: 'möte Arnold', id: 2 },
@@ -32,6 +24,16 @@ const Calendar = () => {
         { date: '2023-11-05', startTime: '11:00', endTime: '13:30', title: 'Bullar', desc: 'köpa bullar', id: 5 },
         { date: '2023-11-08', startTime: '08:05', endTime: '16:25', title: 'Skola', desc: 'redo för skolan', id: 6 }
     ];
+
+    const [date, setDate] = useState<Date>(new Date());
+    const [ dayArray, setDayArray ] = useState<string[]>([]);
+    const [ layout, setLayout ] = useState<string>('calendar');
+    const [dateClicked, setDateClicked] = useState<string>();
+    const [ currentId, setCurrentId ] = useState<number | null>();
+    const [activities, setActivities] = useState<Activities[]>(testActivities);
+
+    const fullDateClicked = `${date.getFullYear()}` + '-' + `${date.getMonth() + 1}` + '-' + `${dateClicked}`;
+
 
     useEffect(() => {
 
@@ -84,7 +86,7 @@ const Calendar = () => {
                     {
 
                         dayArray.map((day, i) => {
-                            return < CalendarDate key={i} day={day} date={date} changeLayout={changeLayout} testActivities={testActivities}/>
+                            return < CalendarDate key={i} day={day} date={date} changeLayout={changeLayout} testActivities={activities}/>
                         })
 
                     }
@@ -104,9 +106,9 @@ const Calendar = () => {
                 <section className="calendar_activities">
 
                     {
-                        testActivities.map((act: Activities, i) => {
+                        activities.map((act: Activities, i) => {
                             if (act.date == fullDateClicked || act.date.substring(0,8) + act.date.substring(9, 10) == fullDateClicked) {
-                                return < CalendarActivity key={i} act={act} changeLayout={changeLayout} setLayout={setLayout}/>
+                                return < CalendarActivity key={i} act={act} activities={activities} setActivities={setActivities} changeLayout={changeLayout} setLayout={setLayout}/>
                             }
                         })
                     }
@@ -128,7 +130,7 @@ const Calendar = () => {
                 <section className="activity_info--container">
 
                     {
-                        testActivities.map((act: Activities) => {
+                        activities.map((act: Activities) => {
                             if ( currentId === act.id ) {
                                 return (
                                     <section key={act.id} className="activity_info">
@@ -158,9 +160,9 @@ const Calendar = () => {
 
                 <section className="activity_info--container">
                     {
-                        testActivities.map((act: Activities) => {
+                        activities.map((act: Activities) => {
                             if ( currentId === act.id ) {
-                                return < CalendarActivityForm key={act.id} date={act.date} title={act.title} time={act.startTime} endTime={act.endTime} desc={act.desc} id={act.id} layout={layout} />
+                                return < CalendarActivityForm key={act.id} acts={activities} setActivities={setActivities} date={act.date} title={act.title} time={act.startTime} endTime={act.endTime} desc={act.desc} id={act.id} layout={layout} setLayout={setLayout}/>
                             }
                         })
                     }
@@ -176,7 +178,7 @@ const Calendar = () => {
 
                 <section className="activity_info--container">
 
-                    < CalendarActivityForm date={fullDateClicked} title={''} time={''} endTime={''} desc={''} id={0} layout={layout} />
+                    < CalendarActivityForm acts={activities} setActivities={setActivities} date={fullDateClicked} title={''} time={''} endTime={''} desc={''} id={0} layout={layout} setLayout={setLayout}/>
 
                 </section>
 

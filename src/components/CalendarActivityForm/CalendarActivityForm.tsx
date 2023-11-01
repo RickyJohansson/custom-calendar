@@ -1,17 +1,29 @@
 import { useLayoutEffect, useState } from 'react';
 import './CalendarActivityForm.css';
 
+type Activities = {
+    date: string;
+    startTime: string;
+    endTime: string;
+    title: string;
+    desc: string;
+    id: number;
+};
+
 type Props = {
-    date: string | undefined;
+    acts: Activities[];
+    setActivities: React.Dispatch<React.SetStateAction<Activities[]>>;
+    date: string;
     title: string;
     time: string;
     endTime: string;
     desc: string;
     id: number;
     layout: string;
+    setLayout: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const CalendarActivityForm = ({date, title, time, endTime, desc, id, layout}: Props) => {
+const CalendarActivityForm = ({acts, setActivities, date, title, time, endTime, desc, id, layout, setLayout}: Props) => {
 
     const [ startHour, setStartHour ] = useState<string>('');
     const [ startMinute, setStartMinute ] = useState<string>('');
@@ -20,6 +32,9 @@ const CalendarActivityForm = ({date, title, time, endTime, desc, id, layout}: Pr
     const [ activityDesc, setActivityDesc ] = useState<string>('');
     const [ valid, setValid ] = useState<boolean>();
     const [ activityTitle, setActivityTitle ] = useState<string>('');
+
+    let todayString: string;
+    date.length < 10 ? todayString = date.substring(0, 8) + '0' + date.charAt(8) : todayString = date;
 
     useLayoutEffect(() => {
 
@@ -60,28 +75,47 @@ const CalendarActivityForm = ({date, title, time, endTime, desc, id, layout}: Pr
 
     const handleChange = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log('attempting to edit');
+        const tempArray = acts.filter((act: Activities) => {
+            if (act.id == id) {
+                return {
+                    date: todayString,
+                    title: activityTitle, 
+                    startTime: `${ startHour + ':' + startMinute }`,
+                    endTime: `${ endHour + ':' + endMinute }`,
+                    desc: activityDesc,
+                    id: id
+                }
+            } else {
+                return act;
+            }
+        });
         console.log('expected edit: ', {
-            date: date,
+            date: todayString,
             title: activityTitle, 
             startTime: `${ startHour + ':' + startMinute }`,
             endTime: `${ endHour + ':' + endMinute }`,
             desc: activityDesc,
             id: id
         })
+        setActivities(tempArray);
+        setLayout('date');
     }
     
     const handleCreate = (e: React.FormEvent<HTMLFormElement>) => {
+
         e.preventDefault();
-        console.log('attempting to create');
-        console.log('expected creation: ', {
-            date: date,
+        const tempArray = acts;
+
+        tempArray.push({
+            date: todayString,
             title: activityTitle, 
             startTime: `${ startHour + ':' + startMinute }`,
             endTime: `${ endHour + ':' + endMinute }`,
             desc: activityDesc,
             id: Math.floor(Math.random() * Math.random() * 120456794006)
         })
+        setActivities(tempArray);
+        setLayout('date');
     }
 
     return(
