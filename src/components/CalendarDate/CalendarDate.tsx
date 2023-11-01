@@ -21,7 +21,7 @@ const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
 
     const [ activities, setActivities ] = useState<boolean>(false);
     const [ id, setId ] = useState<number | null>(null);
-    const today = new Date();
+    let today = new Date();
     let displayDay: string;
 
 
@@ -59,7 +59,7 @@ const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
 
             </div>
 
-            : today.getDate().toString() == day && date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth() ?
+            : today.getDate().toString() == displayDay && date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth() ?
 
             <div className="calendar_date--today" onClick={ () => changeLayout(displayDay, id) }>
 
