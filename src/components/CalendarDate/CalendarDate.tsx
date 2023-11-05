@@ -57,7 +57,10 @@ const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
 
                 {
                     activities && today.getDate().toString() == displayDay && date.getFullYear() == today.getFullYear() && date.getMonth() == today.getMonth() ?
-                    <p className="calendar_string--today">{ displayDay }</p>
+                    <>
+                        <p className="calendar_string--today">{ displayDay }</p>
+                        <p className="calendar_today--text">TODAY</p>
+                    </>
                 :
                     <p>{ displayDay }</p>
                 }
@@ -68,7 +71,8 @@ const CalendarDate = ({ day, date, changeLayout, testActivities }: Props) => {
 
             <div className="calendar_date--today" onClick={ () => changeLayout(displayDay, id) }>
 
-                <p>{ displayDay }</p>
+                <p className="calendar_string--today">{ displayDay }</p>
+                <p className="calendar_today--text">TODAY</p>
 
             </div>
 
