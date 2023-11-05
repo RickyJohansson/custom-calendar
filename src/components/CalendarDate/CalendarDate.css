@@ -21,7 +21,7 @@
     width: 4.5rem;
     height: 4.5rem;
     border-radius: .4rem;
-    background-color: rgb(32, 156, 109);
+    background-color: rgb(7, 150, 95);
 
 }
 
@@ -33,6 +33,10 @@
 
 .calendar_date--container:hover {
     background-color: #b6a9cf;
+}
+
+.calendar_date--activity:hover {
+    background-color: rgb(74, 190, 123);
 }
 
 .calendar_date--activity p, .calendar_date--container p, .calendar_date--today p {
