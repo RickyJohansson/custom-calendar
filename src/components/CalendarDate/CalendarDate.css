@@ -28,15 +28,18 @@
 .calendar_date--today:hover {
 
     background-color: #b796ff;
+    cursor: pointer;
 
 }
 
 .calendar_date--container:hover {
     background-color: #b6a9cf;
+    cursor: pointer;
 }
 
 .calendar_date--activity:hover {
     background-color: rgb(74, 190, 123);
+    cursor: pointer;
 }
 
 .calendar_date--activity p, .calendar_date--container p, .calendar_date--today p {
