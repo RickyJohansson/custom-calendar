@@ -21,7 +21,7 @@
     width: 4.5rem;
     height: 4.5rem;
     border-radius: .4rem;
-    background-color: #00ff9d;
+    background-color: rgb(32, 156, 109);
 
 }
 
@@ -40,4 +40,9 @@
     font-size: 1.5rem;
     font-weight: 600;
     margin: .5rem 0 0 .5rem;
+}
+
+.calendar_date--activity .calendar_string--today {
+    font-size: 2.5rem;
+    margin: 0.2rem 0 0 .5rem;
 }
