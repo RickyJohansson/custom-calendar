@@ -17,6 +17,10 @@
     align-items: center;
 }
 
+.calendar_navigator .left_arrow:hover, .right_arrow:hover {
+    cursor: pointer;
+}
+
 .calendar_navigator .left_arrow {
     transform: rotate(180deg);
 }

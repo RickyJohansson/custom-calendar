@@ -69,4 +69,5 @@
 .activity_form .form_button {
     font-weight: 600;
     height: 2rem;
+    cursor: pointer;
 }
