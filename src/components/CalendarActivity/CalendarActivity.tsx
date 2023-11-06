@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './calendarActivity.css';
 
 type Activities = {
@@ -22,6 +23,7 @@ type Props = {
 const CalendarActivity = ({act, activities, setActivities, changeLayout, setLayout}: Props) => {
 
     let clickedDate: string;
+    const [ showOverlay, setShowOverlay ] = useState<boolean>(false);
 
     act.date.substring(8, 9).includes('0') ? clickedDate = act.date.substring(9, 10) : clickedDate = act.date.substring(8, 10);
 
@@ -37,6 +39,11 @@ const CalendarActivity = ({act, activities, setActivities, changeLayout, setLayo
         })
         
         setActivities(tempArray);
+        setShowOverlay(false);
+    }
+
+    const openOverlay = () => {
+        setShowOverlay(true);
     }
 
     return(
@@ -48,11 +55,23 @@ const CalendarActivity = ({act, activities, setActivities, changeLayout, setLayo
                     <h2> {act.title} </h2>
                     <p> { act.startTime } - { act.endTime } </p>
                 </article>
+                {
+                    showOverlay ?
+                    <article className="overlay">
+                        <p>Är du säker på att du vill ta bort denna aktivitet?</p>
+                        <section className="overlay_btns">
+                            <button onClick={ deleteActivity }>Ja</button>
+                            <button onClick={ () => setShowOverlay(false) }>Nej</button>
+                        </section>
+                    </article>
+                    :
+                    ''
+                }
 
                 <section>
                     <button onClick={ readMore }>Info</button>
                     <button onClick={ () => {changeLayout(clickedDate, act.id), setLayout('edit')} }>Ändra</button>
-                    <button onClick={ deleteActivity }>Ta bort</button>
+                    <button onClick={ openOverlay }>Ta bort</button>
                 </section>
 
             </div>

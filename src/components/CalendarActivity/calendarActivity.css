@@ -40,6 +40,28 @@
     width: 50%;
 }
 
+.activity_wrapper--border .activity_container .overlay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background: #FFFFFF;
+    border-radius: .4rem;
+}
+
+.activity_wrapper--border .activity_container .overlay p {
+    margin: 1rem;
+    font-size: 1rem;
+    color: #020202;
+}
+
+.activity_wrapper--border .activity_container .overlay .overlay_btns {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
 .activity_wrapper--border .activity_container button {
     margin-left: .4rem;
     font-weight: 600;
