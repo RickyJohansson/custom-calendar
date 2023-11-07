@@ -44,6 +44,10 @@
     flex-direction: column;
 }
 
+.calendar_container .activity_info--container .calendar_info--title {
+    margin-top: 2rem;
+}
+
 .calendar_container .activity_info--container .activity_info p {
     margin: .8rem 0;
 }

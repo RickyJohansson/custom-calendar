@@ -134,7 +134,7 @@ const Calendar = () => {
                                 return (
                                     <section key={act.id} className="activity_info">
 
-                                        <h2> { act.title }</h2>
+                                        <h2 className="calendar_info--title"> { act.title }</h2>
                                         <p>{`${act.startTime}` + ' - ' + `${ act.endTime }`}</p>
                                         <p className="activity_desc">Beskrivning:</p>
                                         <article>
