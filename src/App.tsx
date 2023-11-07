@@ -7,7 +7,15 @@ function App() {
 
     <div className="app">
       
-      <h1> Custom Calendar </h1>
+      <h1 className="string_customcalendar"> Custom Calendar </h1>
+      <section className="calendar_description">
+        <figure className="green_square"></figure>
+        <p>- datumet innehåller aktiviteter</p>
+      </section>
+      <section className="calendar_description">
+        <figure className="blue_square"></figure>
+        <p>- date today</p>
+      </section>
       <Calendar />
 
     </div>
