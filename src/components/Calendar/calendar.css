@@ -69,6 +69,8 @@
 .calendar_container .new_button {
     width: 8rem;
     height: 2rem;
+    min-height: 2rem;
+    margin-bottom: 2rem;
     margin-top: 2rem;
     font-weight: 600;
     cursor: pointer;
