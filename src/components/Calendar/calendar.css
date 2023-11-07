@@ -19,6 +19,7 @@
     height: 30rem;
     border-radius: 1rem;
     box-shadow: inset .3rem .3rem .4rem #544d64, inset -.3rem -.3rem .4rem #544d64;
+    overflow-y: auto;
 }
 
 .calendar_container .dates {
