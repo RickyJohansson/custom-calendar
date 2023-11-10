@@ -7,8 +7,10 @@
 
 }
 
-.calendar_date--today {
+.calendar_date--today, .calendar_date--activity {
 
+    display: grid;
+    place-items: center;
     width: 4.5rem;
     height: 4.5rem;
     border-radius: .4rem;
@@ -17,10 +19,7 @@
 }
 
 .calendar_date--activity {
-
-    width: 4.5rem;
-    height: 4.5rem;
-    border-radius: .4rem;
+    
     background-color: rgb(7, 150, 95);
 
 }
@@ -51,11 +50,14 @@
 
 .calendar_date--activity .calendar_string--today, .calendar_date--today .calendar_string--today {
     font-size: 2.5rem;
-    margin: 0.2rem 0 0 1.5rem;
+    margin: 0;
+}
+
+.calendar_date--activity p {
+    margin: 0 4rem 1.8rem .5rem;
 }
 
 .calendar_date--activity .calendar_today--text, .calendar_date--today .calendar_today--text {
     font-size: 1rem;
     margin: 0;
-    margin-left: .85rem;
 }
