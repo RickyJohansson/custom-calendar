@@ -1,7 +1,18 @@
+import { useEffect } from 'react';
 import './App.css'
 import Calendar from './components/Calendar/Calendar';
 
 function App() {
+
+  useEffect(() => {
+    
+    (async function getMsg() {
+      const response = await fetch('http://localhost:5000/activities');
+      const activities = await response.json();
+      console.log(activities);
+    })()
+
+  }, [])
 
   return (
 
