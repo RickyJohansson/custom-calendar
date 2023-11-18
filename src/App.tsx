@@ -25,7 +25,7 @@ function App() {
       </section>
       <section className="calendar_description">
         <figure className="blue_square"></figure>
-        <p>- date today</p>
+        <p>- dagens datum</p>
       </section>
       <Calendar />
 
