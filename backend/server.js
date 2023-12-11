@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+const { ObjectId } = require('mongodb');
 const { connectToDb, getDb } = require('./db');
 
 const app = express();
@@ -28,5 +29,24 @@ app.get("/activities" ,(req, resp) => {
     });
     resp.json({ "msg": "hello man" });
 })
+
+app.get('/activities/:id', (req, res) => {
+  
+    if (ObjectId.isValid(req.params.id)) {
+      db.collection('activities')
+        .findOne({
+          _id: ObjectId(req.params.id)
+        })
+       .then(doc => {
+         res.status(200).json(doc)
+       })
+       .catch(err => {
+         res.status(500).json({ error: 'could not fetch the doc' })
+       })
+   } else {
+     res.status(500).json({ error: 'Not valid doc id' })
+   }
+  
+  })
 
 
