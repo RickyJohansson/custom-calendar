@@ -81,3 +81,29 @@ app.delete('/activities/:id', (req, res) => {
    res.status(500).json({ error: 'Not valid doc id' })
  }
 })
+
+
+app.patch('/books/:id', (req, res) => {
+  const updates = req.body;
+
+ if (ObjectId.isValid(req.params.id)) {
+   db.collection('activities')
+     .updateOne({
+       _id: ObjectId(req.params.id)
+     }, 
+     {
+       $set: updates
+     }
+)                                                    
+    .then(result => {
+      res.status(200).json(result)
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'could not update the doc' })
+    })
+} else {
+  res.status(500).json({ error: 'Not valid doc id' })
+}
+
+})
+
