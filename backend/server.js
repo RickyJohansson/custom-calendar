@@ -64,4 +64,20 @@ app.get('/activities/:id', (req, res) => {
   
 })
 
+app.delete('/activities/:id', (req, res) => {
 
+  if (ObjectId.isValid(req.params.id)) {
+    db.collection('activities')
+      .deleteOne({
+        _id: ObjectId(req.params.id)
+      })
+     .then(result => {
+       res.status(200).json(result)
+     })
+     .catch(err => {
+       res.status(500).json({ error: 'could not delete the doc' })
+     })
+ } else {
+   res.status(500).json({ error: 'Not valid doc id' })
+ }
+})
