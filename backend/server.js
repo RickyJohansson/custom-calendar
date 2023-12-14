@@ -49,4 +49,19 @@ app.get('/activities/:id', (req, res) => {
   
   })
 
+  app.post('/activities', (req, res) => {
+
+  const activity = req.body;
+
+  db.collection('activities')
+    .insertOne(activity)
+    .then( result => {
+         res.status(201).json(result)
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'could not post the body'})
+    })
+  
+})
+
 
