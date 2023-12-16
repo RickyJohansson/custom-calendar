@@ -6,6 +6,7 @@ function App() {
 
   const [ activities, setActivities ] = useState<[]>([]);
 
+  /*
   useEffect(() => {
     
     (async function getActivities() {
@@ -16,7 +17,7 @@ function App() {
       setActivities(data);
     })()
 
-  }, [])
+  }, []) */
 
   console.log(activities);
 
