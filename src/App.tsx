@@ -1,18 +1,24 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import Calendar from './components/Calendar/Calendar';
 
 function App() {
 
+  const [ activities, setActivities ] = useState<[]>([]);
+
   useEffect(() => {
     
-    (async function getMsg() {
+    (async function getActivities() {
       const response = await fetch('http://localhost:5000/activities');
-      const activities = await response.json();
-      console.log(activities);
+      const data = await response.json();
+      console.log(data);
+
+      setActivities(data);
     })()
 
   }, [])
+
+  console.log(activities);
 
   return (
 
