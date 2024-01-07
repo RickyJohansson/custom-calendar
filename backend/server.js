@@ -18,6 +18,8 @@ connectToDb((err) => {
     }
 });
 
+// getting activities
+
 app.get("/activities" ,(req, resp) => {
     const activities = [];
     db.collection('activities').find().sort({ time: 1 }).forEach(activity => activities.push(activity))
@@ -29,6 +31,8 @@ app.get("/activities" ,(req, resp) => {
     });
     resp.json({ "msg": "hello man" });
 })
+
+// getting specific activity
 
 app.get('/activities/:id', (req, res) => {
   
@@ -49,6 +53,8 @@ app.get('/activities/:id', (req, res) => {
   
   })
 
+  // posting a new activity
+
   app.post('/activities', (req, res) => {
 
   const activity = req.body;
@@ -63,6 +69,8 @@ app.get('/activities/:id', (req, res) => {
     })
   
 })
+
+// deleting specific activity
 
 app.delete('/activities/:id', (req, res) => {
 
@@ -82,6 +90,7 @@ app.delete('/activities/:id', (req, res) => {
  }
 })
 
+// updating specific activity
 
 app.patch('/books/:id', (req, res) => {
   const updates = req.body;
