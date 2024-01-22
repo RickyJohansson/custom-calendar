@@ -6,6 +6,8 @@ function App() {
 
   const [ activities, setActivities ] = useState<[]>([]);
 
+  // test with DB
+
   /*
   useEffect(() => {
     
